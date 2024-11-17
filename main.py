@@ -1,13 +1,22 @@
 import streamlit as st
-import time
-st.title('my_process')
+
+
+st.title("Dien thong tin gioi thieu ban than")
+quiz = ["Ho ten","Nam sinh","Lop"]
+len_quiz = len(quiz)
+answers = []
 my_bar = st.progress(0)
 
-for i in range(100):
-    my_bar.progress(i+1)
-    time.sleep(0.02)
-  
-name = st.text_input("")
-if st.button("Write Hello"):
-  st.write("Hello",name)
-  st.balloons()
+for i in range(len_quiz):
+  answer = st.text_input(quiz[i],"")
+  if answer != "":
+    answers.append(answer)
+if st.button("Confirm"):
+  if len(answers) == len_quiz:
+    st.balloons()
+    my_bar.progress(100)
+  else:
+      my_bar.progress(len(answers)/len_quiz)
+      st.write("ban chua nhap day du thong tin")
+
+
